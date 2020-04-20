@@ -17,4 +17,4 @@ import { RecipeDetailPage } from './recipe-detail.page';
   ],
   declarations: [RecipeDetailPage]
 })
-export class RecipeDetailPageModule {}
+export class RecipeDetailPageModule { }

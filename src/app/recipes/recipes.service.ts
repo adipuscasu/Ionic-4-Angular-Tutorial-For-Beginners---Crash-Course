@@ -5,7 +5,7 @@ import { Recipe } from './recipe.model';
   providedIn: 'root'
 })
 export class RecipesService {
-  recipes: Recipe[] = [
+  private recipes: Recipe[] = [
     {
       id: 'r1',
       title: 'Schnitzel',
@@ -15,9 +15,21 @@ export class RecipesService {
     {
       id: 'r2',
       title: 'Spaghetti',
-      imageUrl: 'https://www.shutterstock.com/image-photo/tasty-appetizing-classic-italian-spaghetti-pasta-1119580967',
+      imageUrl: 'https://image.shutterstock.com/image-photo/spaghetti-bolognese-on-white-plate-260nw-639155776.jpg',
       ingredients: ['Spaghetti', 'Meat', 'Tomatoes']
     }
   ];
   constructor() { }
+
+  public getAllRecipes(): Array<Recipe> {
+    return [...this.recipes];
+  }
+
+  public getRecipe(recipeId: string): Recipe {
+    return {
+      ...this.recipes.find(recipe => {
+        return recipe.id === recipeId;
+      })
+    };
+  }
 }

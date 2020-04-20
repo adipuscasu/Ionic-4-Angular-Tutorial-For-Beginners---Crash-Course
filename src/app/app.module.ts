@@ -12,7 +12,10 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    IonicModule.forRoot()],
   providers: [
     StatusBar,
     SplashScreen,
@@ -20,4 +23,4 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
