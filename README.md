@@ -34,6 +34,10 @@ Test the application in the browser by running `ionic serve`
 
 Explain how to run the automated tests for this system
 
+```
+ng test
+```
+
 ### Break down into end to end tests
 
 Explain what these tests test and why
