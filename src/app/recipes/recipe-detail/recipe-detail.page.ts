@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { RecipesService } from '../recipes.service';
 import { Recipe } from '../recipe.model';
@@ -15,7 +16,8 @@ export class RecipeDetailPage implements OnInit, OnDestroy {
   constructor(
     private readonly activatedRoud: ActivatedRoute,
     private readonly recipesService: RecipesService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly alertCtrl: AlertController
   ) {
     this.recipe = null;
   }
@@ -39,6 +41,24 @@ export class RecipeDetailPage implements OnInit, OnDestroy {
     this.subscription.add(paramsSubscription);
   }
   public onDeleteRecipe() {
+    this.alertCtrl.create({
+      header: 'Delete recipe confirmation', message: 'Are you sure?', buttons: [{
+        text: 'Yes',
+        handler: () => {
+          this.deleteRecipe();
+        }
+      },
+      {
+        text: 'No',
+        role: 'cancel'
+      }]
+    }).then((alertEl) => {
+
+      alertEl.present();
+    });
+  }
+
+  private deleteRecipe() {
     this.recipesService.deleteRecipe(this.recipe.id);
     this.router.navigate(['/recipes']);
   }
