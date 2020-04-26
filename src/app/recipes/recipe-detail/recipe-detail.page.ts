@@ -32,11 +32,14 @@ export class RecipeDetailPage implements OnInit, OnDestroy {
   private loadRecipe() {
     const paramsSubscription = this.activatedRoud.paramMap.subscribe(async paramMap => {
       if (!paramMap.get('recipeId')) {
-        // redirect
+        this.router.navigate(['/recipes']);
         return;
       }
       const recipeId = paramMap.get('recipeId');
       this.recipe = this.recipesService.getRecipe(recipeId);
+      if (!this.recipe || !this.recipe.id) {
+        this.router.navigate(['/recipes']);
+      }
     });
     this.subscription.add(paramsSubscription);
   }
